@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Chat</title>
+</head>
+<style media="screen">
+        body {width: 500px; margin: 0 auto; margin-top: 2rem; }
+        .send {width: 100%; margin: 0; padding: 0; margin-top: 1rem; }
+        input.text {width: 80%; margin: 0; padding: 0; padding: 5px; }
+        .btn {padding: 5px 0; width: 82px; background-color: #eee; border: 0; margin: 0; border: solid #eee;        }
+        .btn:hover {background-color: #00e4bc}
+        ul {list-style-type: none;width: 100%;padding: 0;margin: 0;}
+        li { padding: 5px 10px; }
+        li:nth-child(odd) {background-color: #eee}
+</style>
+<body>
+
+    <ul class="ul" id="messages"></ul>
+
+    <div class="send">
+        <input class="text" autofocus="" id="menssagem" autocomplete="off" required>
+        <button class="btn" id="enviar_menssagem">Send</button>
+    </div>
+
+    <!--  importar o client do socketIO-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // faz com que seja possível enviar mensagens com Enter
+        document.getElementById('menssagem').addEventListener('keypress', (e) => {
+            var key = e.which || e.keyCode;
+            if (key == 13) {
+                enviar_menssagem();
+            }
+        });
+        // inicia o client socketIO
+        const socket = io();
+        // Abre um popup perguntando o nome da pessoa
+        const nome_usuario = prompt("Qual seu nome?");
+        const names = [
+            "Flavin do Pneu",
+            "NoobMaster69",
+            "Xaolim Matador de Porco",
+            "Irineu",
+        ];
+        // Caso usuário não informe um nome será atribuido um nome aleatório da lista
+        if (nome_usuario === null || nome_usuario.trim().length === 0) {
+            nome_usuario = names[Math.floor(Math.random() * names.length)];
+        }
+
+        socket.emit('chat message', "Bem vindo! " + nome_usuario);
+        document.getElementById('enviar_menssagem').addEventListener("click", enviar_menssagem);
+
+        function enviar_menssagem() {
+            msg = document.getElementById('menssagem').value;
+            if (msg.length > 0) {
+                console.log(msg);
+                socket.emit('chat message', nome_usuario + ": " + msg);
+                document.getElementById('menssagem').value = "";
+            }
+        }
+        socket.on('chat message', function(msg){
+            let ul = document.getElementById("messages");
+            let li = document.createElement('li');
+            let br = document.createElement('br');
+            li.appendChild(document.createTextNode(msg));
+            ul.appendChild(li);
+        });
+
+        socket.on('conected', ()=>{
+            console.log(socket.id)
+        })
+
+
+    </script>
+</body>
+</html>

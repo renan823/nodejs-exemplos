@@ -1,0 +1,33 @@
+canvas{
+	border: 3px solid #3C5665;
+	background-color: #ABC7D8;
+}
+div{
+	margin-top: 50px;
+	width: 860px;
+	height: 606px;
+	display: grid;
+	grid-template-columns: 590px 270px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #C4E0F2;
+}
+li{
+	background-color: #678192;
+	height: 30px;
+	margin-top: 10px;
+	color: black;
+	text-align: center;
+	padding: 2px;
+}
+body{
+	background-color: #94AFC1;
+}
+h1, h2{
+	text-align: center;
+	color: #3C5665;
+	font-family: monospace;
+}
+b{
+	color: black;
+}

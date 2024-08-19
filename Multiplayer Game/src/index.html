@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="src/style.css">
+    <title>Multiplayer Game</title>
+  </head>
+  <body>
+    <h1>A simple multiplayer game =)</h1>
+    <div>
+      <canvas id="canvas"></canvas>
+      <ul id="players" type="none"></ul>
+    </div>
+    <h2>Use <b>Arrow Keys</b> to move your player</h2>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="src/draw.js">
+    </script>
+    <script>
+      window.onload = function () {
+        var socket = io();
+        document.addEventListener("keydown", (e) => {
+          socket.emit("move", e.key, String(socket.id));
+        });
+        socket.on("atualize", (list, cristal, colisao) => {
+          Draw(list, cristal, colisao)
+        });
+        socket.on("off", (list, cristal, colisao) => {
+          Draw(list, cristal, colisao)
+        });
+        socket.on("on", (list, cristal, colisao) => {
+          Draw(list, cristal, colisao)
+        });
+      };
+    </script>
+  </body>
+</html>

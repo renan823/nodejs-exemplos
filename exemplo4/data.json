@@ -1,0 +1,24 @@
+[
+  {
+    "1 ano": [
+      {"nome": "DSW", "professor": ["Jorge", "Ricardo"]},
+      {"nome": "FIN", "professor": ["Pedro", "Salina"]},
+      {"nome": "ALG", "professor": ["Carlão", "Silvana"]}
+    ]
+  },
+  {
+    "2 ano": [
+      {"nome": "DSW2", "professor": ["Trojahn"]},
+      {"nome": "TEP", "professor": ["Célia"]},
+      {"nome": "BDD", "professor": ["Silvana"]},
+      {"nome": "ESW", "professor": ["Jorge"]}
+    ]
+  },
+  {
+    "3 ano": [
+      {"nome": "DSW3", "professor": ["Ricardo"]},
+      {"nome": "PJI", "professor": ["Danilo", "Bianchi"]},
+      {"nome": "DDM", "professor": ["Carlão", "Bianchi"]}
+    ]
+  }
+]

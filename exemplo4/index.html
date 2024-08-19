@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ola</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <script>
+      const url = 'http://localhost:8081/data'
+      const metodo = 'get'
+      $.ajax({
+        url: url,
+        type: metodo,
+        data: {msg: "hi"},
+        success: (data)=>{
+          console.log("Oi")
+          console.log(data)
+        },
+        error: (erro)=>{
+          console.log(erro)
+        }
+      })
+    </script>
+  </body>
+</html>
